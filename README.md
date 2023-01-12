@@ -1,3 +1,5 @@
+[![Docker Image CI](https://github.com/andy5995/slackware-container/actions/workflows/docker.yml/badge.svg)](https://github.com/andy5995/slackware-container/actions/workflows/docker.yml)
+
 # slackware-container
 
 build scripts for a slackware container image
