@@ -31,7 +31,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./tmp/rootfs-${{ inputs.release }}/mnt/
+          context: .
+          build-args: RELEASE=$${{ inputs.release }}
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/slackware:15.0

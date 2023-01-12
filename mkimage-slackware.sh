@@ -219,8 +219,8 @@ umount $ROOTFS/dev
 rm -f dev/* # containers should expect the kernel API (`mount -t devtmpfs none /dev`)
 umount etc/resolv.conf
 
-#tar --numeric-owner -cf- . > ${CWD}/${RELEASE}.tar
-#ls -sh ${CWD}/${RELEASE}.tar
+tar --numeric-owner -cf- . > ${CWD}/${RELEASE}.tar
+ls -sh ${CWD}/${RELEASE}.tar
 
 for dir in cdrom dev sys proc ; do
 	if mount | grep -q $ROOTFS/$dir  ; then
