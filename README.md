@@ -9,11 +9,15 @@ This repository was forked from
 at
 [fork-point](https://github.com/andy5995/slackware-container/tree/fork-point).
 
-## Overview
+The image is pushed to [Docker Hub at
+andy5995/slackware](https://hub.docker.com/repository/docker/andy5995/slackware/general).
 
-The Dockerfile is incomplete so far, since it expects a base image to be used.
-It would be possible and understandable to use the 'busybox' image, and build
-from there, but also to have a mkimage-slackware.sh to build the base image.
+This is a [template
+repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+If you create a repo from this template and want to push directly to your
+Docker Hub account, you'll need to follow the [instructions for creating an
+access token](https://docs.docker.com/docker-hub/access-tokens/) and update
+`.github/workflows/docker.yml`
 
 ## build
 
@@ -40,37 +44,30 @@ _(this also can be built and run with docker as well. If you build with one, you
 
 To build alternate versions of slackware, pass gnu-make the RELEASE variable, like:
 
-```shell
-make image RELEASE=slackware64-13.37 IMG_NAME=$HOME/my_slackware:13.37
-```
+   make image RELEASE=slackware64-15.0
+
+A tar file will be created which contains the Slackware filesystem. To create
+an image from that manually, see the [Docker import
+reference](https://docs.docker.com/engine/reference/commandline/import/);
+alternatively, to create an image using the Dockerfile in the repo root, use:
+
+    docker build --build-arg RELEASE=<release> -t <name:tag> .
 
 To build and test say slackware64-current in a docker container:
 
-```shell
-make run-current
-```
+    make run-current
 
-## Index
+or
 
-This is this build process used to be the base of 'vbatts/slackware' on the
-http://index.docker.io/
+    docker run -it andy5995/slackware
 
-Just running:
-
-```shell
-sudo podman run -i -t vbatts/slackware /bin/sh
-```
-
- or
-
-```shell
-sudo docker run -i -t vbatts/slackware /bin/sh
-```
 
 Will pull down this image for testing.
 
 ## Contributing
-please hack on this and send feedback!
+
+Please use the [GitHub
+flow](https://docs.github.com/en/get-started/quickstart/github-flow)
 
 ## License
 
