@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   workflow_dispatch:
-    input:
+    inputs:
       release:
         description: 'release'
         required: true
@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
       -
         name: Make
-        run: make image RELEASE=${{ input.release }}
+        run: make image RELEASE=${{ inputs.release }}
       -
         name: Login to Docker Hub
         uses: docker/login-action@v2
@@ -31,7 +31,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./tmp/rootfs-${{ input.release }}/mnt/
+          context: ./tmp/rootfs-${{ inputs.release }}/mnt/
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/slackware:15.0
