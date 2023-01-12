@@ -32,7 +32,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          build-args: RELEASE=$${{ inputs.release }}
+          build-args: RELEASE=${{ inputs.release }}
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/slackware:15.0
