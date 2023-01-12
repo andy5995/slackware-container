@@ -69,7 +69,10 @@ Will pull down this image for testing.
 ## Contributing
 
 Please use the [GitHub
-flow](https://docs.github.com/en/get-started/quickstart/github-flow)
+flow](https://docs.github.com/en/get-started/quickstart/github-flow).
+Individual pull requests should only contain related changes. Making many
+unrelated changes in one PR will often cause a delay in having it reviewed and
+merged.
 
 ## License
 
