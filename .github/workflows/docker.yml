@@ -1,13 +1,6 @@
 name: Docker Image CI
 
 on:
-  workflow_dispatch:
-    inputs:
-      release:
-        description: 'release'
-        required: true
-        default: 'slackware64-15.0'
-        type: string
   push:
     branches: [ "master" ]
     paths-ignore:
@@ -16,12 +9,14 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    env:
+      RELEASE: slackware64-15.0
     steps:
       -
         uses: actions/checkout@v3
       -
         name: Make
-        run: make image RELEASE=${{ inputs.release }}
+        run: make image RELEASE=${{ env.RELEASE }}
       -
         name: Login to Docker Hub
         uses: docker/login-action@v2
@@ -36,7 +31,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          build-args: RELEASE=${{ inputs.release }}
+          build-args: RELEASE=${{ env.RELEASE }}
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/slackware:15.0
