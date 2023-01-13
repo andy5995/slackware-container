@@ -49,11 +49,16 @@ To build alternate versions of slackware, pass gnu-make the RELEASE variable, li
    make image RELEASE=slackware64-15.0
 
 A tar file will be created which contains the Slackware filesystem. To create
-an image from that manually, see the [Docker import
-reference](https://docs.docker.com/engine/reference/commandline/import/);
-alternatively, to create an image using the Dockerfile in the repo root, use:
+the docker image, use:
 
-    docker build --build-arg RELEASE=<release> -t <name:tag> .
+     docker import <release>.tar
+
+Note: './Dockerfile' is used in the GitHub workflow and contains a
+[multi-stage build](https://docs.docker.com/build/building/multi-stage/).
+Locally, you could use `docker build ...` instead of `docker import ...`, but
+docker doesn't automatically remove the first stage, which would result in (a
+[dangling
+image](https://stackoverflow.com/questions/58322755/docker-build-does-not-remove-temporary-images-when-building-a-multi-stage-docker).
 
 To build and test say slackware64-current in a docker container:
 
