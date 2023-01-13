@@ -20,64 +20,63 @@ CACHEFS=${CACHEFS:-"$PWD/tmp/${BUILD_NAME}/${RELEASE}"}
 ROOTFS=${ROOTFS:-"$PWD/tmp/rootfs-${RELEASE}"}
 CWD=$(pwd)
 
-base_pkgs=	" \
-	a/aaa_base \
+base_pkgs="a/aaa_base \
 	a/aaa_elflibs \
-	a/aaa_glibc-solibs \
 	a/aaa_libraries \
+	a/coreutils \
+	a/glibc-solibs \
+	a/aaa_glibc-solibs \
 	a/aaa_terminfo \
-	a/acl \
- 	a/attr \
+	a/pam \
+	a/cracklib \
+	a/libpwquality \
+	a/e2fsprogs \
+	a/nvi \
+	a/pkgtools \
+	a/shadow \
+	a/tar \
+	a/xz \
 	a/bash \
+	a/etc \
+	a/gzip \
+	l/pcre2 \
+	l/libpsl \
+	n/wget \
+	n/gnupg \
+	a/elvis \
+	ap/slackpkg \
+	l/ncurses \
 	a/bin \
 	a/bzip2 \
-	a/coreutils \
-	a/cracklib \
-	a/dialog \
-	a/e2fsprogs \
-	a/elogind \
-	a/elvis \
-	a/etc \
-	a/file \
-	a/findutils \
-	a/gawk \
-	a/gettext \
-	a/glibc-solibs \
 	a/grep \
-	a/gzip \
-	a/libcgroup \
-	a/libpwquality \
-	a/nvi \
-	a/pam \
-	a/patch \
-	a/pkgtools \
-	a/procps \
-	ap/diffutils \
-	ap/slackpkg \
+	a/acl \
+	l/pcre \
+	l/gmp \
+ 	a/attr \
 	a/sed \
-	a/shadow \
-	a/sysfsutils \
-	a/tar \
+	a/dialog \
+	a/file \
+	a/gawk \
 	a/time \
+	a/gettext \
+	a/libcgroup \
+	a/patch \
+	a/sysfsutils \
 	a/time \
 	a/tree \
 	a/utempter \
-	a/util-linux \
 	a/which \
-	a/xz \
-	l/gmp \
-	l/libpsl \
+	a/util-linux \
+	a/elogind \
 	l/libseccomp \
-	l/libunistring \
 	l/mpfr \
-	l/ncurses \
-	l/pcre \
-	l/pcre2 \
-	n/gnupg \
-	n/iproute2 \
+	l/libunistring \
+	ap/diffutils \
+	a/procps \
 	n/net-tools \
-	n/openssl \
-	n/wget"
+	a/findutils \
+	n/iproute2 \
+	n/openssl"
 
 function cacheit() {
 	file=$1
