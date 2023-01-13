@@ -51,7 +51,7 @@ To build alternate versions of slackware, pass gnu-make the RELEASE variable, li
 A tar file will be created which contains the Slackware filesystem. To create
 the docker image, use:
 
-     docker import <release>.tar
+     docker import <release>.tar <name:tag>
 
 Note: './Dockerfile' is used in the GitHub workflow and contains a
 [multi-stage build](https://docs.docker.com/build/building/multi-stage/).
