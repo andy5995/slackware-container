@@ -56,7 +56,7 @@ the docker image, use:
 Note: './Dockerfile' is used in the GitHub workflow and contains a
 [multi-stage build](https://docs.docker.com/build/building/multi-stage/).
 Locally, you could use `docker build ...` instead of `docker import ...`, but
-docker doesn't automatically remove the first stage, which would result in (a
+docker doesn't automatically remove the first stage, which results in a
 [dangling
 image](https://stackoverflow.com/questions/58322755/docker-build-does-not-remove-temporary-images-when-building-a-multi-stage-docker).
 
