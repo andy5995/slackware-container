@@ -11,8 +11,9 @@ if [ -z "$ARCH" ]; then
   esac
 fi
 
+LATEST_STABLE="15.0"
 BUILD_NAME=${BUILD_NAME:-"slackware"}
-VERSION=${VERSION:="current"}
+VERSION=${VERSION:=${LATEST_STABLE}}
 RELEASENAME=${RELEASENAME:-"slackware${ARCH}"}
 RELEASE=${RELEASE:-"${RELEASENAME}-${VERSION}"}
 MIRROR=${MIRROR:-"http://slackware.mirrors.tds.net/pub/slackware/"}
