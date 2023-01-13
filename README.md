@@ -21,55 +21,50 @@ Docker Hub account, you'll need to follow the [instructions for creating an
 access token](https://docs.docker.com/docker-hub/access-tokens/) and update
 `.github/workflows/docker.yml`
 
-## build
+## Pull
 
-Currently, using the installer bootstrap, the mkimage-slackware can create an
-ultra-minimal slackware filesystem. (does not even include pkgtools)
+To pull the image without building:
 
-If you have [podman](https://github.com/containers/libpod/tree/master/cmd/podman) installed (the is an [SBo build](https://slackbuilds.org/repository/14.2/system/podman/)):
+    docker pull andy5995/slackware:15.0
 
-```shell
-CRT="sudo podman" make image
-```
+To run the image, see the various options in the [Docker
+documentation](https://docs.docker.com/engine/reference/commandline/run/).
 
-Then you will be able to run:
+## Podman
 
-```shell
-sudo podman run -i -t $USER/slackware-base /bin/sh
-```
+See the [podman
+instructions](https://docs.podman.io/en/latest/Reference.html) if you use
+[podman](https://docs.podman.io/en/latest/Reference.html) instead of docker.-
 
-_(this also can be built and run with docker as well. If you build with one, you'll have to push your container build to a container registry before you can pull and run with the other)_
+## Build
 
-(This will be the environment to build out the Dockerfile from)
-(( see http://docs.docker.com/reference/builder/ for more info on that ))
+Currently, using the installer bootstrap, the included `mktar.sh` script can
+create an ultra-minimal slackware filesystem. (does not even include pkgtools)
 
+Note: sudo is required because the script uses
+[chroot](https://en.wikipedia.org/wiki/Chroot) and downloads files into /tmp.
 
-To build alternate versions of slackware, pass gnu-make the RELEASE variable, like:
+To build the latest stable version (15.0):
 
-   make image RELEASE=slackware64-15.0
+    sudo ./mktar
+
+For 'current':
+
+    sudo RELEASE=slackware64-current ./mktar
 
 A tar file will be created which contains the Slackware filesystem. To create
 the docker image, use:
 
-     docker import <release>.tar <name:tag>
+     DOCKER_BUILDKIT=1 docker build --build-arg RELEASE=<release> -t <name:tag> .
 
 Note: './Dockerfile' is used in the GitHub workflow and contains a
 [multi-stage build](https://docs.docker.com/build/building/multi-stage/).
-Locally, you could use `docker build ...` instead of `docker import ...`, but
-docker doesn't automatically remove the first stage, which results in a
-[dangling
-image](https://stackoverflow.com/questions/58322755/docker-build-does-not-remove-temporary-images-when-building-a-multi-stage-docker).
-
-To build and test say slackware64-current in a docker container:
-
-    make run-current
-
-or
-
-    docker run -it andy5995/slackware
-
-
-Will pull down this image for testing.
+Normally, docker doesn't automatically remove the first stage, which results
+in a [dangling
+image](https://stackoverflow.com/questions/58322755/docker-build-does-not-remove-temporary-images-when-building-a-multi-stage-docker);
+however, when [preceded with `DOCKER_BUILDKIT=1` and using docker >=
+18.09](https://stackoverflow.com/a/61983230/6838037), the image will get
+automatically removed after the build.
 
 ## Contributing
 
