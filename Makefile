@@ -16,8 +16,8 @@ ARCH = 64
 endif
 RELEASENAME	?= slackware$(ARCH)
 RELEASE		= $(RELEASENAME)-$(VERSION)
-CACHEFS		= $PWD/tmp/$(NAME)/$(RELEASE)
-ROOTFS		= $PWD/tmp/rootfs-$(RELEASE)
+CACHEFS		= /tmp/$(NAME)/$(RELEASE)
+ROOTFS		= /tmp/rootfs-$(RELEASE)
 #CRT		?= podman
 CRT		?= docker
 

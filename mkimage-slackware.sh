@@ -16,8 +16,8 @@ VERSION=${VERSION:="current"}
 RELEASENAME=${RELEASENAME:-"slackware${ARCH}"}
 RELEASE=${RELEASE:-"${RELEASENAME}-${VERSION}"}
 MIRROR=${MIRROR:-"http://slackware.mirrors.tds.net/pub/slackware/"}
-CACHEFS=${CACHEFS:-"$PWD/tmp/${BUILD_NAME}/${RELEASE}"}
-ROOTFS=${ROOTFS:-"$PWD/tmp/rootfs-${RELEASE}"}
+CACHEFS=${CACHEFS:-"/tmp/${BUILD_NAME}/${RELEASE}"}
+ROOTFS=${ROOTFS:-"/tmp/rootfs-${RELEASE}"}
 CWD=$(pwd)
 
 base_pkgs="a/aaa_base \
