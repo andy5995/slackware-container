@@ -57,6 +57,10 @@ the docker image, use:
 
      docker build --build-arg RELEASE=<release> -t <name:tag> .
 
+## Related Projects
+
+* [aclemons/slackware-dockerfiles](https://github.com/aclemons/slackware-dockerfiles/) - Unofficial Slackware Linux Docker Images
+
 ## Contributing
 
 Please use the [GitHub
