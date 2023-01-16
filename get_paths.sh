@@ -57,7 +57,7 @@ main() {
     local ret
 
     mirror="${MIRROR:-http://slackware.osuosl.org}"
-    release="${RELEASE:-slackware64-current}"
+    release="${RELEASE:-slackware64-15.0}"
 
     while getopts ":hm:r:t" opts ; do
         case "${opts}" in
@@ -77,7 +77,7 @@ main() {
         esac
     done
     shift $((OPTIND-1))
-    
+
     tmp_dir="$(mktemp -d)"
     tmp_file_list="${tmp_dir}/FILE_LIST"
     _fetch_file_list "${mirror}" "${release}" > "${tmp_file_list}"
@@ -86,7 +86,7 @@ main() {
         echo "ERROR fetching FILE_LIST" >&2
         exit $ret
     fi
-    
+
     if [ -n "${fetch_tagfiles}" ] ; then
         for section in $(_sections_from_file_list "${tmp_file_list}") ; do
             mkdir -p "${tmp_dir}/${section}"
@@ -97,7 +97,7 @@ main() {
             fi
         done
     fi
-    
+
     grep '\.t.z$' "${tmp_file_list}" | awk '{ print $8 }' | sed -e 's|\./\(.*\.t.z\)$|\1|g'
 }
 
