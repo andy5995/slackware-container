@@ -55,16 +55,7 @@ For 'current':
 A tar file will be created which contains the Slackware filesystem. To create
 the docker image, use:
 
-     DOCKER_BUILDKIT=1 docker build --build-arg RELEASE=<release> -t <name:tag> .
-
-Note: './Dockerfile' is used in the GitHub workflow and contains a
-[multi-stage build](https://docs.docker.com/build/building/multi-stage/).
-Normally, docker doesn't automatically remove the first stage, which results
-in a [dangling
-image](https://stackoverflow.com/questions/58322755/docker-build-does-not-remove-temporary-images-when-building-a-multi-stage-docker);
-however, when [preceded with `DOCKER_BUILDKIT=1` and using docker >=
-18.09](https://stackoverflow.com/a/61983230/6838037), the image will get
-automatically removed after the build.
+     docker build --build-arg RELEASE=<release> -t <name:tag> .
 
 ## Contributing
 

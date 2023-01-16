@@ -1,9 +1,4 @@
-FROM alpine
-ARG RELEASE
-COPY $RELEASE.tar .
-WORKDIR /slackware
-RUN tar xf /$RELEASE.tar
-
 FROM scratch
-COPY --from=0 /slackware /
+ARG RELEASE
+ADD $RELEASE.tar /
 CMD ["/bin/bash","-l"]
