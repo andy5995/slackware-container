@@ -2,7 +2,8 @@
 
 # slackware-container
 
-build scripts for a slackware container image
+Unofficial build scripts for a [slackware](http://www.slackware.com/)
+container image
 
 ## Note
 
