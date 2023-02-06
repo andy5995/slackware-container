@@ -6,7 +6,7 @@ on:
     paths-ignore:
       - '**/*.md'
   schedule:
-    - cron: '40 22 5/15 * 0'
+    - cron: '40 22 5/15 * *'
 
 jobs:
   docker_stable:
