@@ -12,9 +12,9 @@ jobs:
   docker:
     name: slackware64-${{ matrix.version }}
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
-        version: [15.0, current]
+        version: [15\.0, current]
     runs-on: ubuntu-latest
     steps:
       -
