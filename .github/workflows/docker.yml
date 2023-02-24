@@ -15,6 +15,8 @@ jobs:
       fail-fast: false
       matrix:
         version: ['15.0', current]
+    env:
+      RELEASE: slackware64-${{ matrix.version }}
     runs-on: ubuntu-latest
     steps:
       -
@@ -36,7 +38,9 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          build-args: RELEASE=slackware64-${{ matrix.version }}
+          build-args: RELEASE=${{ env.RELEASE }}
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/slackware:${{ matrix.version }}
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/slackware:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/slackware:buildcache,mode=max
