@@ -83,6 +83,7 @@ base_pkgs="a/aaa_base \
 	a/util-linux \
 	a/elogind \
 	l/libseccomp \
+	l/libmnl \
 	l/mpfr \
 	l/libunistring \
 	ap/diffutils \
@@ -90,7 +91,8 @@ base_pkgs="a/aaa_base \
 	n/net-tools \
 	a/findutils \
 	n/iproute2 \
-	n/openssl"
+	n/openssl \
+	ap/nano"
 
 function cacheit() {
 	file=$1
