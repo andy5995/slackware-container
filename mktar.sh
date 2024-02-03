@@ -16,19 +16,11 @@ BUILD_NAME=${BUILD_NAME:-"slackware"}
 VERSION=${VERSION:=${LATEST_STABLE}}
 RELEASENAME=${RELEASENAME:-"slackware${ARCH}"}
 RELEASE=${RELEASE:-"${RELEASENAME}-${VERSION}"}
-MIRROR_LIST=( \
-  "http://slackware.mirrors.tds.net/pub/slackware" \
-  "http://mirrors.us.kernel.org/slackware" \
-  "http://mirrors.xmission.com/slackware" \
-  "http://slackware.cs.utah.edu/pub/slackware" \
-  "http://spout.ussg.indiana.edu/linux/slackware" \
-  "http://slackware.osuosl.org" \
-  )
-n=0
+
 if [ $(command -v shuf) ]; then
 	n=$(shuf -i 0-5 -n 1)
 fi
-MIRROR=${MIRROR:-"${MIRROR_LIST[$n]}"}
+MIRROR=${MIRROR:-"http://mirrors.us.kernel.org/slackware"}
 
 CACHEFS=${CACHEFS:-"/tmp/${BUILD_NAME}/${RELEASE}"}
 ROOTFS=${ROOTFS:-"/tmp/rootfs-${RELEASE}"}
@@ -255,5 +247,3 @@ for dir in cdrom dev sys proc ; do
 		umount $ROOTFS/$dir
 	fi
 done
-
-
