@@ -247,3 +247,5 @@ for dir in cdrom dev sys proc ; do
 		umount $ROOTFS/$dir
 	fi
 done
+
+chown $SUDO_USER:$SUDO_USER ${CWD}/${RELEASE}.tar
