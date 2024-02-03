@@ -47,11 +47,11 @@ Note: sudo is required because the script uses
 
 To build the latest stable version (15.0):
 
-    sudo ./mktar
+    sudo ./mktar.sh
 
 For 'current':
 
-    sudo RELEASE=slackware64-current ./mktar
+    sudo RELEASE=slackware64-current ./mktar.sh
 
 A tar file will be created which contains the Slackware filesystem. To create
 the docker image, use:
@@ -64,7 +64,7 @@ the docker image, use:
 
 ## Contributing
 
-Please use the [GitHub
+Open an issue before starting a pull request. Please use the [GitHub
 flow](https://docs.github.com/en/get-started/quickstart/github-flow).
 Individual pull requests should only contain related changes. Making many
 unrelated changes in one PR will often cause a delay in having it reviewed and
