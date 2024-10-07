@@ -43,7 +43,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          build-args: RELEASE="${{ env.RELEASE }}"
+          build-args: RELEASE=${{ env.RELEASE }}
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/slackware:${{ matrix.version }}
