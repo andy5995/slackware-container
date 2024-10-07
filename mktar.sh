@@ -13,9 +13,15 @@ fi
 
 LATEST_STABLE="15.0"
 BUILD_NAME=${BUILD_NAME:-"slackware"}
-VERSION=${VERSION:=${LATEST_STABLE}}
 RELEASENAME=${RELEASENAME:-"slackware${ARCH}"}
 RELEASE=${RELEASE:-"${RELEASENAME}-${VERSION}"}
+
+# Check if 'current' is a substring of RELEASE and set VERSION accordingly
+if [[ "$RELEASE" == *"current"* ]]; then
+    VERSION='current'
+else
+    VERSION=${VERSION:-$LATEST_STABLE}
+fi
 
 if [ $(command -v shuf) ]; then
 	n=$(shuf -i 0-5 -n 1)
