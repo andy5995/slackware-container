@@ -17,9 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: ['15.0', current]
-    env:
-      RELEASE: slackware64-${{ matrix.version }}
+        version: ['15.0', 'current']
     runs-on: ubuntu-latest
     steps:
       -
@@ -28,7 +26,7 @@ jobs:
         name: Make
         run: |
           export -p
-          sudo RELEASE="${RELEASE}" ./mktar.sh
+          sudo RELEASE=${{ docker.name }} ./mktar.sh
       -
         name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -43,7 +41,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          build-args: RELEASE=${{ env.RELEASE }}
+          build-args: RELEASE=${{ docker.name }}
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/slackware:${{ matrix.version }}
