@@ -200,10 +200,11 @@ chroot . /bin/sh -c '/sbin/ldconfig'
 if [ ! -e ./root/.gnupg ] ; then
 	cacheit "GPG-KEY"
 	cp ${CACHEFS}/GPG-KEY .
+	GPGBIN=gpg$([ "$VERSION" = "current" ] && echo 1) || true
 	echo PATH=/bin:/sbin:/usr/bin:/usr/sbin \
-	chroot . /usr/bin/gpg --import GPG-KEY
+	chroot . /usr/bin/$GPGBIN --import GPG-KEY
 	PATH=/bin:/sbin:/usr/bin:/usr/sbin \
-	chroot . /usr/bin/gpg --import GPG-KEY
+	chroot . /usr/bin/$GPGBIN --import GPG-KEY
 	rm GPG-KEY
 fi
 
